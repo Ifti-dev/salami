@@ -9,7 +9,7 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            transition: .3s ease-in-out;
+            
             scroll-behavior: smooth;
         }
         html{
@@ -20,6 +20,7 @@
             --glow-border: 2px solid color-mix(in oklab, #00fa9a 50%, rgba(255, 255, 255, 0));;
             --box-shadow: 0px 0px 15px #00fa9a7e;
             --theme-color: #00fa9a;
+            --transition:.3s ease-in-out;
         }
         body{
             background-color: #0f172a;
@@ -61,7 +62,7 @@
         .img-container{
             max-width: 400px;
             position: relative;
-            
+            transition: var(--transition);
         }
         .img-container-bkash{
             max-width: 400px;
@@ -87,6 +88,7 @@
             border-radius: 12px;
             border: var(--glow-border);
             box-shadow: 0px 0px 20px #00fa9a7e inset;
+            transition: var(--transition);
         }
         .img-container:hover .img-container-box{
             border-color:  var(--theme-color);
@@ -109,6 +111,7 @@
             z-index: 10;
             object-fit: cover;
             filter: drop-shadow(4px 4px 30px #00fa9a80);
+            transition: var(--transition);
         }
         .img-container-bkash img{
             position: relative;
@@ -138,6 +141,7 @@
             border: none;
             font-weight: bold;
             color: rgba(0, 0, 0, 0.699);
+            transition: var(--transition);
         }
         .section-1 .jump-btn:hover{
             box-shadow: 0px 0px 15px #00fa9a7e;
@@ -162,6 +166,7 @@
             gap: 15px;
             border: var(--glow-border);
             overflow: hidden;
+            transition: var(--transition);
         }
         .packages:hover{
             box-shadow: var(--box-shadow);
@@ -184,10 +189,12 @@
             border: none;
             font-weight: bold;
             color: rgba(0, 0, 0, 0.699);
+            transition: var(--transition);
             
         }
         .packages .card-btn{
             width: 100%;
+            padding: 12px 0px;
         }
         .card-btn:hover{
             box-shadow: var(--box-shadow);
@@ -253,6 +260,7 @@
             font-size: 1.2rem;
             font-weight: bold;
             text-transform: uppercase;
+            transition: var(--transition);
         }
         .section-3 ul li:hover{
             border-color: var(--theme-color);
@@ -423,14 +431,16 @@
                     ✔️copied
                 `
                 copy_number.closest(".container").querySelector(".copy-btn-container").appendChild(notification)
+               
+                document.querySelectorAll(".notify").forEach(e=>{
+                    e.addEventListener("animationend",()=>{
+                        e.remove()
+                    })
+                })
+
             })
 
-            document.querySelectorAll(".notify").forEach(btn=>{
             
-                btn.addEventListener("animationend",()=>{
-                    console.log("njnd")
-                })
-        })
         </script>
     </footer>
 </body>
