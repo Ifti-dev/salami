@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salami den</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            transition: .3s ease-in-out;
+            scroll-behavior: smooth;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        :root{
+            --border-raidus: 12px;
+            --glow-border: 2px solid color-mix(in oklab, #00fa9a 50%, rgba(255, 255, 255, 0));;
+            --box-shadow: 0px 0px 15px #00fa9a7e;
+            --theme-color: #00fa9a;
+        }
+        body{
+            background-color: #0f172a;
+            color: white;
+        }
+        ul{
+            list-style-type: none;
+        }
+        main{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 50px;
+            padding: 30px 0;
+        }
+        section{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .container{
+            max-width: 1100px;
+            padding: 0px 10px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 0 auto;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        /* section 1 image */
+        .img-container{
+            max-width: 400px;
+            position: relative;
+            
+        }
+        .img-container-bkash{
+            max-width: 400px;
+            position: relative;
+            border-radius: var(--border-raidus);
+        }
+        .img-container-box::before{
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #00fa9a57;
+            position: absolute;
+            border-radius: 12px;
+            filter: blur(20px);
+        }
+        .img-container-box{
+            width: 100%;
+            height: 200px;
+            
+            position: absolute;
+            bottom: 0;
+            z-index: 0;
+            border-radius: 12px;
+            border: var(--glow-border);
+            box-shadow: 0px 0px 20px #00fa9a7e inset;
+        }
+        .img-container:hover .img-container-box{
+            border-color:  var(--theme-color);
+            box-shadow: 0px 0px 20px #00fa9a7e ;
+        }
+        .img-container:hover img{
+            
+            /* horizontal-offset | vertical-offset | blur-radius | color */
+            filter: drop-shadow(4px 4px 20px #00fa9a80);
+
+        }
+        .img-container:hover{
+            scale: 1.02;
+            /* box-shadow: 0px 0px 15px #00fa9a ; */
+        }
+
+        .img-container img{
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            object-fit: cover;
+            filter: drop-shadow(4px 4px 30px #00fa9a80);
+        }
+        .img-container-bkash img{
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            object-fit: cover;
+            filter: drop-shadow(4px 4px 30px #00fa9a80);
+            border-radius: 20px;
+        }
+
+        /* section 1 info */
+
+        .my-info{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+        }
+        .my-info p{
+            color: #cbd5e1;
+        }
+        .section-1 .jump-btn{
+            padding: 12px 20px;
+            border-radius: 12px;
+            background-color: #00fa9a;
+            border: none;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.699);
+        }
+        .section-1 .jump-btn:hover{
+            box-shadow: 0px 0px 15px #00fa9a7e;
+            scale: 1.02;
+        }
+
+        /* section 1 */
+
+        .packages-container{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+        .packages{
+            padding: 20px;
+            background-color: #0f172a;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            
+            gap: 15px;
+            border: var(--glow-border);
+        }
+        .packages:hover{
+            box-shadow: var(--box-shadow);
+            border-color: var(--theme-color);
+        }
+        .packages h3{
+            font-size: 1.5rem;
+        }
+        .packages p{
+            font-size: 1.4rem;
+        }
+        .packages ul{
+            flex-grow: 1;
+        }
+       
+        .card-btn{
+            padding: 12px 20px;
+            border-radius: 12px;
+            background-color: #00fa9a;
+            border: none;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.699);
+            
+        }
+        .packages .card-btn{
+            width: 100%;
+        }
+        .card-btn:hover{
+            box-shadow: var(--box-shadow);
+            scale: 1.02;
+        }
+        .card-btn:active{
+            box-shadow: var(--box-shadow);
+            scale: 1.0;
+        }
+
+
+
+
+        .copy-btn-container{
+            position: relative;
+            
+            display: flex;
+            justify-content: center;
+
+        }
+        .notify{
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            animation: moveup forwards;
+            animation-duration: 3s;
+            padding: 5px 50px;
+            border-radius: var(--border-raidus);
+            background-color: #00fa9a;
+            box-shadow: var(--box-shadow);
+            border: 2px white solid;
+            z-index: 100;
+        }
+        
+        @keyframes moveup {
+            0%{
+                
+                opacity: 1;
+            }
+            80%{
+                opacity: 1;
+                bottom:  0;
+            }
+            100%{
+                bottom: 15px;
+                opacity: 0;
+            }
+        }
+
+        .section-3 ul{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .section-3 ul li{
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            border: var(--glow-border);
+            border-radius: var(--border-raidus);
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .section-3 ul li:hover{
+            border-color: var(--theme-color);
+        }
+        @media screen and (max-width: 1100px) {
+            .packages-container{
+                
+                grid-template-columns: repeat(2, 1fr);
+                
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <section>
+            <div class="container section-1">
+                <div class="img-container">
+                    <img src="iftekhar.png" alt="Iftekhar">
+                    <div class="img-container-box"></div>
+                </div>
+                <div class="my-info">
+                    <h1>আসসালামু আলাইকুম খালাম্মা/ আপা/ ভাইয়ো, ঈদ মোবারক 🌙</h1>
+                    <p>আমি Mohammed Iftekhar 😌 <br>
+                        এই ঈদে আপনার ভালোবাসা + সালামি = আমার সুখ 💖</p>
+                </div>
+                <a href="#payment" class="jump-btn">সালামি পাঠান 💸</a>
+            </div>
+        </section>
+
+        <section>
+            <div class="container section-2">
+                <h2>💼 সালামি প্যাকেজ</h2>
+                <div class="face">
+                    <video src="Smile.webm" autoplay loop class="reaction-vid"></video>
+                </div>
+                <div class="packages-container">
+                    <div class="packages" data-id="starter">
+                        <h3>🟢 Starter</h3>
+                        <p>৫০ টাকা</p>
+                        <ul>
+                            <li>✔️ Basic দোয়া</li>
+                            <li>✔️ Thank you message</li>
+                        </ul>
+                        <div class="copy-btn-container">
+                            <input type="button" value="সালামি পাঠান 💸" class="card-btn">
+                        </div>
+                    </div>
+                    <div class="packages" data-id="pro">
+                        <h3>🔵 Pro</h3>
+                        <p>২০০ টাকা</p>
+                        <ul>
+                            <li>✔️ Basic দোয়া</li>
+                            <li>✔️ Thank you message</li>
+                            <li>✔️ 🤍🤍🤍</li>
+                        </ul>
+                        <div class="copy-btn-container">
+                            <input type="button" value="সালামি পাঠান 💸" class="card-btn">
+                        </div>
+                        
+                    </div>
+                    <div class="packages" data-id="premium">
+                        <h3>🟡 Premium</h3>
+                        <p>৫০০ টাকা</p>
+                        <ul>
+                            <li>✔️ Basic দোয়া</li>
+                            <li>✔️ Thank you message</li>
+                            <li>✔️ Learderboard এ জায়গা পাওয়ার সুযোগ</li>
+                        </ul>
+                        <div class="copy-btn-container">
+                            <input type="button" value="সালামি পাঠান 💸" class="card-btn">
+                        </div>
+                        
+                    </div>
+                    <div class="packages" data-id="ultimate">
+                        <h3>🔴 Ultimate</h3>
+                        <p>১০০০+ টাকা</p>
+                        <ul>
+                            <li>✔️ Basic দোয়া</li>
+                            <li>✔️ Thank you message</li>
+                            <li>✔️ Certificate</li>
+                            <li>✔️ Learderboard এ জায়গা পাওয়ার সুযোগ</li>
+                        </ul>
+                        <div class="copy-btn-container">
+                            <input type="button" value="সালামি পাঠান 💸" class="card-btn">
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container section-2" id="payment">
+                <h2>💳 পেমেন্ট</h2>
+                <div class="copy-btn-container">
+                    <input type="button" value="Copy Number" class="card-btn" id="copy-number">
+                </div>
+                
+                <div class="payment-info">
+                    <div class="img-container-bkash">
+                        <img src="mohammed iftekhar bkash.jpeg" alt="mohammed iftekhar bkash">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="container section-3" id="payment">
+                <h2>🏆 Leaderboard</h2>
+                <ul>
+                    <li>🥇 Iftekhar</li>
+                    <li>🥈 Iftekhar</li>
+                    <li>🥉 Iftekhar</li>
+                    <li>🏅 Iftekhar</li>
+                    <li>🎖️ Iftekhar</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <script>
+            const packages = document.querySelector(".packages-container");
+            const packages_btn = packages.querySelectorAll(".card-btn");
+            packages_btn.forEach(btn=>{
+                btn.addEventListener("click", (e)=> {
+                    let btn_value = e.target.closest(".packages").dataset.id;
+                    let reaction_vid = document.querySelector(".reaction-vid");
+
+                    navigator.clipboard.writeText("01841399022")
+                    const notification = document.createElement("div")
+                    notification.className = "notify"
+                    notification.innerHTML = `
+                        ✔️copied
+                    `
+                    e.target.closest(".packages").querySelector(".copy-btn-container").appendChild(notification)
+
+
+                    console.log(e.target.closest(".packages").dataset.id)
+                    switch (btn_value){
+                        case "starter":
+                            reaction_vid.src = "Smile.webm"
+                            break;
+                        case "pro":
+                            reaction_vid.src = "Happy emoji.webm"
+                            break;
+                        case "premium":
+                            reaction_vid.src = "Star Strike Emoji.webm"
+                            break;
+                        case "ultimate":
+                            reaction_vid.src = "Money.webm"
+                            break;
+                    }
+                    
+                })
+            })
+
+            const copy_number = document.querySelector("#copy-number")
+            copy_number.addEventListener("click",()=>{
+                navigator.clipboard.writeText("01841399022")
+                const notification = document.createElement("div")
+                notification.className = "notify"
+                notification.innerHTML = `
+                    ✔️copied
+                `
+                copy_number.closest(".container").querySelector(".copy-btn-container").appendChild(notification)
+            })
+
+            document.querySelectorAll(".notify").forEach(btn=>{
+            
+                btn.addEventListener("animationend",()=>{
+                    console.log("njnd")
+                })
+        })
+        </script>
+    </footer>
+</body>
+</html>
