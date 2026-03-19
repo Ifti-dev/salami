@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/bbf8f18e93.js" crossorigin="anonymous"></script>
     <title>Salami den</title>
     <style>
         *{
@@ -64,42 +65,7 @@
             position: relative;
             transition: var(--transition);
         }
-        .img-container-bkash{
-            max-width: 400px;
-            position: relative;
-            border-radius: var(--border-raidus);
-        }
-        .img-container-box::before{
-            content: "";
-            width: 100%;
-            height: 100%;
-            background-color: #00fa9a57;
-            position: absolute;
-            border-radius: 12px;
-            filter: blur(20px);
-        }
-        .img-container-box{
-            width: 100%;
-            height: 200px;
-            
-            position: absolute;
-            bottom: 0;
-            z-index: 0;
-            border-radius: 12px;
-            border: var(--glow-border);
-            box-shadow: 0px 0px 20px #00fa9a7e inset;
-            transition: var(--transition);
-        }
-        .img-container:hover .img-container-box{
-            border-color:  var(--theme-color);
-            box-shadow: 0px 0px 20px #00fa9a7e ;
-        }
-        .img-container:hover img{
-            
-            /* horizontal-offset | vertical-offset | blur-radius | color */
-            filter: drop-shadow(4px 4px 20px #00fa9a80);
 
-        }
         .img-container:hover{
             scale: 1.02;
             /* box-shadow: 0px 0px 15px #00fa9a ; */
@@ -113,14 +79,43 @@
             filter: drop-shadow(4px 4px 30px #00fa9a80);
             transition: var(--transition);
         }
-        .img-container-bkash img{
-            position: relative;
-            width: 100%;
-            z-index: 10;
-            object-fit: cover;
-            filter: drop-shadow(4px 4px 30px #00fa9a80);
-            border-radius: 20px;
+        
+        .img-container:hover img{
+            
+            /* horizontal-offset | vertical-offset | blur-radius | color */
+            filter: drop-shadow(4px 4px 20px #00fa9a80);
+
         }
+        
+
+        .img-container-box::before{
+            content: "";
+            width: 100%;
+            height: 100%;
+            background-color: #00fa9a57;
+            position: absolute;
+            border-radius: 12px;
+            filter: blur(20px);
+        }
+
+        .img-container-box{
+            width: 100%;
+            height: 200px;
+            
+            position: absolute;
+            bottom: 0;
+            z-index: 0;
+            border-radius: 12px;
+            border: var(--glow-border);
+            box-shadow: 0px 0px 20px #00fa9a7e inset;
+            transition: var(--transition);
+        }
+
+        .img-container:hover .img-container-box{
+            border-color:  var(--theme-color);
+            box-shadow: 0px 0px 20px #00fa9a7e ;
+        }
+
 
         /* section 1 info */
 
@@ -148,7 +143,7 @@
             scale: 1.02;
         }
 
-        /* section 1 */
+        /* section 2 */
 
         .packages-container{
             width: 100%;
@@ -222,12 +217,15 @@
             transform: translate(-50%,-50%);
             animation: moveup forwards;
             animation-duration: 3s;
-            padding: 5px 50px;
+            padding: 10px 10px 10px 20px;
+            max-width: 400px;
+            width: 100%;
             border-radius: var(--border-raidus);
             background-color: #00fa9a;
             box-shadow: var(--box-shadow);
             border: 2px white solid;
             z-index: 100;
+            color: black;
         }
         
         @keyframes moveup {
@@ -244,14 +242,32 @@
                 opacity: 0;
             }
         }
+        
+        /* section 3 */
+        .img-container-bkash{
+            max-width: 400px;
+            position: relative;
+            border-radius: var(--border-raidus);
+        }
 
-        .section-3 ul{
+        .img-container-bkash img{
+            position: relative;
+            width: 100%;
+            z-index: 10;
+            object-fit: cover;
+            filter: drop-shadow(4px 4px 30px #00fa9a80);
+            border-radius: 20px;
+        }
+
+        /* section 4 */
+
+        .section-4 ul{
             width: 100%;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-        .section-3 ul li{
+        .section-4 ul li{
             width: 100%;
             box-shadow: var(--box-shadow);
             border: var(--glow-border);
@@ -262,15 +278,46 @@
             text-transform: uppercase;
             transition: var(--transition);
         }
-        .section-3 ul li:hover{
+        .section-4 ul li:hover{
             border-color: var(--theme-color);
         }
+
+        .scrool-pop-up-container{
+            display: none;
+        }
+        /* mobile responsive */
         @media screen and (max-width: 1100px) {
             .packages-container{
                 
                 grid-template-columns: repeat(2, 1fr);
                 
             }
+            .notify{
+                width: 80%;
+            }
+            .scrool-pop-up-container{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+                position: fixed;
+                bottom: 10px;
+                animation: up_down 1s ease-in-out alternate;
+                /* the alternate value for the animation-direction property causes the 
+                animation to play forward on the first cycle and then backward on each 
+                subsequent odd-numbered cycle. */
+                animation-iteration-count: infinite;
+            }
+            @keyframes up_down {
+                0%{
+                    transform: translateY(-20px);
+                }
+                100%{
+                    transform: translateY(0);
+                }
+                
+            }
+            
         }
 
     </style>
@@ -356,7 +403,7 @@
         </section>
 
         <section>
-            <div class="container section-2" id="payment">
+            <div class="container section-3" id="payment">
                 <h2>💳 পেমেন্ট</h2>
                 <div class="copy-btn-container">
                     <input type="button" value="Copy Number" class="card-btn" id="copy-number">
@@ -373,7 +420,7 @@
 
 
         <section>
-            <div class="container section-3" id="payment">
+            <div class="container section-4" id="payment">
                 <h2>🏆 Leaderboard</h2>
                 <ul>
                     <li>🥇 Iftekhar</li>
@@ -384,9 +431,33 @@
                 </ul>
             </div>
         </section>
+
+        <div class="scrool-pop-up-container">
+            <p>Scroll to explore</p>
+            <i class="fa-solid fa-arrow-down-long" style="color: rgb(0, 250, 154);"></i>
+        </div>
     </main>
     <footer>
         <script>
+            const copy_number_clipboard = ()=>{
+                navigator.clipboard.writeText("01841399022")
+            }
+            const notify_creator = ()=>{
+                const notification = document.createElement("div")
+                notification.className = "notify"
+                notification.innerHTML = `<i class="fa-solid fa-circle-check" style="color: rgb(30, 48, 80);"></i> Number copied`
+
+                document.querySelector("body").appendChild(notification)
+
+                document.querySelectorAll(".notify").forEach(e=>{
+                    e.addEventListener("animationend",()=>{
+                        e.remove()
+                    })
+                })
+
+            }
+
+
             const packages = document.querySelector(".packages-container");
             const packages_btn = packages.querySelectorAll(".card-btn");
             packages_btn.forEach(btn=>{
@@ -394,13 +465,8 @@
                     let btn_value = e.target.closest(".packages").dataset.id;
                     let reaction_vid = document.querySelector(".reaction-vid");
 
-                    navigator.clipboard.writeText("01841399022")
-                    const notification = document.createElement("div")
-                    notification.className = "notify"
-                    notification.innerHTML = `
-                        ✔️copied
-                    `
-                    e.target.closest(".packages").querySelector(".copy-btn-container").appendChild(notification)
+                    copy_number_clipboard()
+                    notify_creator()
 
 
                     console.log(e.target.closest(".packages").dataset.id)
@@ -424,20 +490,8 @@
 
             const copy_number = document.querySelector("#copy-number")
             copy_number.addEventListener("click",()=>{
-                navigator.clipboard.writeText("01841399022")
-                const notification = document.createElement("div")
-                notification.className = "notify"
-                notification.innerHTML = `
-                    ✔️copied
-                `
-                copy_number.closest(".container").querySelector(".copy-btn-container").appendChild(notification)
-               
-                document.querySelectorAll(".notify").forEach(e=>{
-                    e.addEventListener("animationend",()=>{
-                        e.remove()
-                    })
-                })
-
+                copy_number_clipboard()
+                notify_creator()
             })
 
             
