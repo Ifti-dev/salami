@@ -337,6 +337,11 @@
             }
             
         }
+        @media (prefers-reduced-motion) {
+            .scrool-pop-up-hide{
+                display: none;
+            }
+        }
 
     </style>
 </head>
@@ -519,8 +524,8 @@
 
             const observer_limits = {
                 root: null, //browser viewport as container
-                rootMargin: "0px",
-                threshold: 0.4
+                rootMargin: "0px", //browser viewport margin
+                threshold: 0.4 //when 40 % of the container is seen add the class or the code
             }
 
             const obsrever = new IntersectionObserver(entries =>{
@@ -528,13 +533,18 @@
                     if(entry.isIntersecting){
                         scrool_pop_up_container.classList.add("scrool-pop-up-hide")
                     }
-                    else{
-                        scrool_pop_up_container.classList.remove("scrool-pop-up-hide")
-                    }
+                    
                 })
             }, observer_limits)
 
             obsrever.observe(section_2)
+
+            // to reset the scroll animation, cause when it passes the intersection the animation appears again.
+            window.addEventListener("scroll",()=>{
+                if(window.scrollY == 0){
+                    scrool_pop_up_container.classList.remove("scrool-pop-up-hide")
+                }
+            })
             
         </script>
     </footer>
