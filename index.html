@@ -285,6 +285,8 @@
         .scrool-pop-up-container{
             display: none;
         }
+
+
         /* mobile responsive */
         @media screen and (max-width: 1100px) {
             .packages-container{
@@ -308,12 +310,28 @@
                 subsequent odd-numbered cycle. */
                 animation-iteration-count: infinite;
             }
+            .scrool-pop-up-hide{
+                animation: hide 1s forwards;
+
+            }
+
             @keyframes up_down {
                 0%{
                     transform: translateY(-20px);
                 }
                 100%{
                     transform: translateY(0);
+                }
+                
+            }
+            @keyframes hide {
+                0%{
+                    opacity: 1;
+                    display: flex;
+                }
+                100%{
+                    opacity: 0;
+                    display: none;
                 }
                 
             }
@@ -438,7 +456,7 @@
         </div>
     </main>
     <footer>
-        <script>
+        <script defer>
             const copy_number_clipboard = ()=>{
                 navigator.clipboard.writeText("01841399022")
             }
@@ -494,6 +512,29 @@
                 notify_creator()
             })
 
+
+            //scroll pop on scroll animation
+            const section_2 = document.querySelector(".section-2")
+            const scrool_pop_up_container = document.querySelector(".scrool-pop-up-container")
+
+            const observer_limits = {
+                root: null, //browser viewport as container
+                rootMargin: "0px",
+                threshold: 0.4
+            }
+
+            const obsrever = new IntersectionObserver(entries =>{
+                entries.forEach(entry=>{
+                    if(entry.isIntersecting){
+                        scrool_pop_up_container.classList.add("scrool-pop-up-hide")
+                    }
+                    else{
+                        scrool_pop_up_container.classList.remove("scrool-pop-up-hide")
+                    }
+                })
+            }, observer_limits)
+
+            obsrever.observe(section_2)
             
         </script>
     </footer>
